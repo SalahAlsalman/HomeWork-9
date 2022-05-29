@@ -29,4 +29,20 @@ public class MovieController {
         movieService.addMovie(movie);
         return ResponseEntity.status(201).body("Movie Added!");
     }
+
+    @PutMapping
+    public ResponseEntity updateMovie(@RequestBody Movie movie, Errors  errors) {
+        if (errors.hasErrors()) {
+            return ResponseEntity.status(400).body(errors);
+        }
+
+        movieService.updateMovie(movie);
+        return ResponseEntity.status(200).body("Movie Updated!");
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity deleteMovie(@PathVariable String id) {
+        movieService.deleteMovie(id);
+        return ResponseEntity.status(200).body("Movie Deleted!");
+    }
 }

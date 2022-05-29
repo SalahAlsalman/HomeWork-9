@@ -19,4 +19,12 @@ public class MovieService {
     public void addMovie(Movie movie) {
         movieRepository.save(movie);
     }
+
+    public void updateMovie(Movie movie) {
+        movieRepository.save(movie);
+    }
+
+    public void deleteMovie(String id) {
+        movieRepository.deleteById(id);
+    }
 }
