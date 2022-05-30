@@ -1,6 +1,7 @@
 package com.example.moviehw9.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -25,8 +26,9 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-@AllArgsConstructor @NoArgsConstructor @Data
+@NoArgsConstructor @Data
 @Entity
 public class Movie {
     @Id
@@ -45,9 +47,11 @@ public class Movie {
     @Min(value = 1, message = "rating must be from 1 to 5")
     @Max(value = 5, message = "rating must be from 1 to 5")
     private Integer rating;
+    @JsonFormat(pattern="HH:mm")
+    @NotEmpty(message = "duration is required")
+    private String duration;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date duration;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(nullable = false)
     private Date launchDate;
 
 
